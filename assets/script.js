@@ -1,14 +1,16 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$( ".saveBtn" ).on( "click", function() {
-  alert( "saved" );
+$( '.saveBtn' ).on( 'click', function() {
+  event.preventDefault ();
+  alert( 'saved' );
   // console.log('click')
   var SaveBtnValue = $(this).val();
   var textarea = document.getElementsByClassName('description').value;
   localStorage.setItem('.savebtn',  JSON.stringify(textarea));
-  console.log(localStorage.setItem('.savebtn', JSON.stringify(textarea)))
+  console.log(localStorage.getItem('.savebtn', JSON.stringify(textarea)))
 } );
+
 
 
 
@@ -23,22 +25,22 @@ hour = parseInt(moment.format('H'));
     var minutes = parseInt(moment.format('mm'));
 
     // color coded timeblocks
-    if (hour < 9){
-        $('.time-block').removeClass("present past").addClass("future");
+    if (hour < 19){
+        $('.time-block').removeClass('present past').addClass('future');
     }
-    if (hour > 16){
-        $('.time-block').removeClass("present future").addClass("past");
+    if (hour > 5){
+        $('.time-block').removeClass('present future').addClass('past');
     }
-    $( "div.time-block" ).each(function() {
-        var timeblockNum = parseInt($( this ).data("value"));
+    $( 'div.time-block' ).each(function() {
+        var timeblockNum = parseInt($( this ).data('value'));
         if (hour < timeblockNum){
-            $( this ).removeClass("past present").addClass("future");
+            $( this ).removeClass('past present').addClass('future');
         }
         if (hour == timeblockNum){
-            $( this ).removeClass("past future").addClass("present");
+            $( this ).removeClass('past future').addClass('present');
         }
         if (hour > timeblockNum){
-            $( this ).removeClass("present future").addClass("past");
+            $( this ).removeClass('present future').addClass('past');
         }
         
     });
